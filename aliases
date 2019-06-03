@@ -1,0 +1,5 @@
+# Show the path the the latest aGalaxuy upgrade image.
+# Param: AGA_BUILDIMAGE_PATH
+AGA_BUILD_IMAGE_PATH=/mnt/bldimage/agalaxyn
+
+alias latest_upgrade='cd $AGA_BUILD_IMAGE_PATH ; readlink -f $(find $(ls /mnt/bldimage/agalaxyn/ -t | head -n 1)/output -name *gpg); cd ->/dev/null'
