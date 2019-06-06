@@ -1,6 +1,6 @@
 # Source env vars
 
-. $PWD/env
+. $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/env
 
 # To show current git branch.
 function parse_git_branch () {
@@ -40,7 +40,7 @@ load() {
 }
 # Put everything together
 #PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW\$(parse_git_branch)$NO_COLOR \$ "
-PS1="$GREEN\u@$(eth0_ip) ${YELLOW}\$(disk_free) ${BLUE}\$(load)$NO_COLOR:\w$LIGHT_PURPLE\$(parse_git_branch)$NO_COLOR \$ "
+PS1="$BLUE\u@$(eth0_ip) ${YELLOW}\$(disk_free) ${BLUE}\$(load)$NO_COLOR:\w$LIGHT_PURPLE\$(parse_git_branch)$NO_COLOR \$ "
 
 
 # Function to copy ssh-key to aGalaxy
@@ -58,3 +58,11 @@ function copy-ssh-key() {
 export AGALAXY_IP=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
 export AGA_SCP_USERNAME=a10
 export AGA_SCP_PASSWORD=a101234
+
+function disk-usage() {
+    local path=$1
+    if [ -z $target ]; then
+        target=./
+    fi
+    du $path -h --max-depth=1 | sort -h
+}
