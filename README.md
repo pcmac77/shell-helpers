@@ -24,6 +24,6 @@ fi
 if [ -f ~/src/shell-helpers/bashrc ]; then
     . ~/src/shell-helpers/bashrc
 fi
-# PCHUANG END
+
 ```
 
