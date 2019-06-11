@@ -66,3 +66,7 @@ function disk-usage() {
     fi
     du $path -h --max-depth=1 | sort -h
 }
+
+function get-dev-accounts() {
+    ssh root@192.168.99.27 'find /mnt/a10/it/etc/sudoers.a10 -name "*tp*.sudoers" -exec grep Alias {} /dev/null \;'
+}
